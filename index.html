@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Listing</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="app-header">
+            <h1>Find Your Doctor</h1>
+            <p class="subtitle">Book appointments with verified doctors</p>
+        </header>
+
+        <div class="main-layout">
+            <!-- Sidebar with Filters -->
+            <aside class="sidebar">
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <div class="search-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="searchInput" data-testid="autocomplete-input" placeholder="Search doctors by name, specialty, or location...">
+                    </div>
+                    <div id="searchSuggestions" class="search-suggestions"></div>
+                </div>
+
+                <!-- Filter Panel -->
+                <div class="filter-panel">
+                    <!-- Consultation Type Filter -->
+                    <div class="filter-section">
+                        <h3 data-testid="filter-header-moc">
+                            <i class="fas fa-video"></i>
+                            Consultation Type
+                        </h3>
+                        <div class="radio-group">
+                            <label>
+                                <input type="radio" name="consultationType" value="video" checked data-testid="filter-video-consult">
+                                <span class="radio-label">
+                                    <i class="fas fa-video"></i>
+                                    Video Consult
+                                </span>
+                            </label>
+                            <label>
+                                <input type="radio" name="consultationType" value="clinic" data-testid="filter-in-clinic">
+                                <span class="radio-label">
+                                    <i class="fas fa-hospital"></i>
+                                    In Clinic
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Specialties Filter -->
+                    <div class="filter-section">
+                        <h3 data-testid="filter-header-speciality">
+                            <i class="fas fa-stethoscope"></i>
+                            Specialties
+                        </h3>
+                        <div id="specialtiesFilter" class="checkbox-group"></div>
+                    </div>
+
+                    <!-- Experience Filter -->
+                    <div class="filter-section">
+                        <h3>
+                            <i class="fas fa-clock"></i>
+                            Experience
+                        </h3>
+                        <div class="experience-filter">
+                            <select id="experienceFilter">
+                                <option value="">Any Experience</option>
+                                <option value="5">5+ Years</option>
+                                <option value="10">10+ Years</option>
+                                <option value="15">15+ Years</option>
+                                <option value="20">20+ Years</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Languages Filter -->
+                    <div class="filter-section">
+                        <h3>
+                            <i class="fas fa-language"></i>
+                            Languages
+                        </h3>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" value="English">
+                                English
+                            </label>
+                            <label>
+                                <input type="checkbox" value="हिन्दी">
+                                हिन्दी
+                            </label>
+                            <label>
+                                <input type="checkbox" value="मराठी">
+                                मराठी
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Fees Range Filter -->
+                    <div class="filter-section">
+                        <h3>
+                            <i class="fas fa-indian-rupee-sign"></i>
+                            Consultation Fee
+                        </h3>
+                        <div class="fees-range">
+                            <input type="range" id="feesRange" min="0" max="2000" step="100" value="2000">
+                            <div class="fees-labels">
+                                <span>₹0</span>
+                                <span id="feesValue">₹2000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sort Options -->
+                    <div class="filter-section">
+                        <h3 data-testid="filter-header-sort">
+                            <i class="fas fa-sort"></i>
+                            Sort By
+                        </h3>
+                        <select id="sortSelect">
+                            <option value="fees_asc" data-testid="sort-fees">Fees (Low to High)</option>
+                            <option value="fees_desc">Fees (High to Low)</option>
+                            <option value="experience_desc" data-testid="sort-experience">Experience (High to Low)</option>
+                            <option value="experience_asc">Experience (Low to High)</option>
+                            <option value="rating_desc">Rating (High to Low)</option>
+                        </select>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Active Filters -->
+                <div id="activeFilters" class="active-filters"></div>
+
+                <!-- Results Count -->
+                <div class="results-count">
+                    <span id="resultsCount">0</span> doctors found
+                </div>
+
+                <!-- Doctor List -->
+                <div id="doctorList" class="doctor-list">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        Loading doctors...
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script type="module" src="./main.js"></script>
+</body>
+</html>
